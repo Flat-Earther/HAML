@@ -1,1 +1,11 @@
 .idea/
+__pycache__/
+
+data/*.pkl
+data/*_subgraph/
+data/aifb*/
+data/aifb_parsercheck*/
+
+log*/
+state*/
+tb*/
