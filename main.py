@@ -20,17 +20,17 @@ if __name__ == '__main__':
     parser.add_argument('--tb_log_dir', '-tb_log_dir', default='./tb_log', type=str)
 
     # params for subgraph
-    parser.add_argument('--num_train_subgraph', default=10000)#10000->1000,1
-    parser.add_argument('--num_valid_subgraph', default=300)#200->2000,1
-    parser.add_argument('--num_sample_for_estimate_size', default=50)#50->25
+    parser.add_argument('--num_train_subgraph', default=10000, type=int)#10000->1000,1
+    parser.add_argument('--num_valid_subgraph', default=300, type=int)#200->2000,1
+    parser.add_argument('--num_sample_for_estimate_size', default=50, type=int)#50->25
     parser.add_argument('--rw_0', default=10, type=int)
     parser.add_argument('--rw_1', default=10, type=int)
     parser.add_argument('--rw_2', default=5, type=int)
     parser.add_argument('--num_sample_cand', default=5, type=int)
 
     # params for meta-train
-    parser.add_argument('--metatrain_num_neg', default=8)
-    parser.add_argument('--metatrain_num_epoch', default=10)#5->10
+    parser.add_argument('--metatrain_num_neg', default=8, type=int)
+    parser.add_argument('--metatrain_num_epoch', default=10, type=int)#5->10
     parser.add_argument('--metatrain_bs', default=4, type=int)#16->8->4
     parser.add_argument('--metatrain_lr', default=0.01, type=float)
     parser.add_argument('--metatrain_check_per_step', default=10, type=int)#10->5
@@ -50,16 +50,21 @@ if __name__ == '__main__':
 
     parser.add_argument('--gpu', default='cuda:0', type=str)
     parser.add_argument('--seed', default=1234, type=int)
-    
+
     #params for ConvE
     parser.add_argument('--emb_dim', default=200, type=int)
     parser.add_argument('--num_ent', default=7305, type=int)
-    parser.add_argument('--num_rel', default=263, type=int)#area1's params 
+    parser.add_argument('--num_rel', default=263, type=int)#area1's params
     parser.add_argument('--hid_size', default=9278, type=int)
     parser.add_argument('--inp_drop', default=0.2, type=float)
     parser.add_argument('--hid_drop', default=0.3, type=float)
     parser.add_argument('--fet_drop', default=0.2, type=float)
     parser.add_argument('--emb_shape',default=20, type=int)
+
+    # Required by the RGCN implementation recovered from the upstream .pyc.
+    # These arguments are absent from the original parser.
+    parser.add_argument('--num_layers', default=2, type=int)
+    parser.add_argument('--num_bases', default=4, type=int)
 
     args = parser.parse_args()
     init_dir(args)
